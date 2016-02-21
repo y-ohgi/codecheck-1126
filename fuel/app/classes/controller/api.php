@@ -24,7 +24,7 @@ class Controller_Api extends Controller_Rest
             }else{
                 
                 $this->response->status = 404;
-                return ;
+                return "";
             }
         }
         
@@ -68,10 +68,10 @@ class Controller_Api extends Controller_Rest
         $project = Model_Project::find($id);
         if($project){
             $project->delete();
-            return;
+            return "";
         }else{
             $this->response->status = 404;
-            return;
+            return "";
         }
     }
 }
