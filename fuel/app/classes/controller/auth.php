@@ -12,9 +12,46 @@ class Controller_Auth extends Controller_Template
 
 	public function action_signup($uuid = null)
 	{
+        if(Input::method() === "POST"){
+            
+            $user = Auth::create_user(Input::post('username'), Input::post('password'), Input::post('email'));
+            if($user){
+                $data["text"] = "ユーザー登録が完了しました";
+                $this->template->title = 'Confirm';
+                $this->template->content = View::forge('auth/confirm');
+                return;
+            }
+
+            // TODO: 既存のユーザー名ですメッセージ
+        }
+
+        
+        $taccept = 3600*24; // 1日
+        $time = time();
+        
+        $mailauth = Model_Users_Mailauth::find('all',array('where'=> array(
+            array('uuid' => $uuid),
+        )));
+        $mailauth = array_shift($mailauth);
+        
+        // $taccept秒経過しているか
+        $updatedat = $mailauth['updated_at']?$mailauth['updated_at']: $time + $taccept;
+        if( ($time - $mailauth['created_at']) > $taccept || ($time - $updatedat) > $taccept){
+            $data["text"] = "無効なURLです";
+            $this->template->title = 'confirm';
+            $this->template->content = View::forge('auth/confirm');
+            return;
+        }
+        
+        $data['user'] = array(
+            'email' => $mailauth['email'],
+            'uuid' => $uuid,
+        );
+        
 		$data["subnav"] = array('signup'=> 'active' );
 		$this->template->title = 'Auth &raquo; Signup';
 		$this->template->content = View::forge('auth/signup', $data);
+        
 	}
 
 	public function action_signout()
@@ -68,11 +105,11 @@ class Controller_Auth extends Controller_Template
                 $this->response_status = '500';
             }
         }else{
-            var_dump($result);
-            exit();
+            //$this->response_status = '409';
         }
 
-        $data['text'] = "メールを送信しました。確認してください";
+        // 登録済みのメールアドレスかを知られてしまう脆弱性のため、既存のメールアドレスであっても同じテキストを返す
+        $data['text'] = "メールを送信しました。2・3分ほどお待ち頂く場合があります";
         $this->template->title = 'Confirm';
         return $this->template->content = View::forge('auth/confirm', $data);
     }
