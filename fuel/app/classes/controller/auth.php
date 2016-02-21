@@ -52,7 +52,7 @@ class Controller_Auth extends Controller_Template
         
             $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
             $email = new SendGrid\Email();
-            $email->addTo(Input::get('email'))->
+            $email->addTo(Input::post('email'))->
                 setFrom(getenv('SENDGRID_USERNAME'))->
                 setSubject('sprintポートフォリオアプリメール認証')->
                 setText('http://peaceful-lowlands-28991.herokuapp.com/auth/register/'.$uuid);
