@@ -14,7 +14,7 @@ class Controller_Profiles extends Controller_Template
 	{
         $id = $this->param('id');
 
-        if($id){
+        if($id && $id !== "create"){
             $res = Request::forge('api/projects/'. $id)->execute()->response();
             $body = json_decode($res->body, true);
 
