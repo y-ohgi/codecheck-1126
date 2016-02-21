@@ -3,11 +3,11 @@
 class Controller_Test extends Controller_Rest
 {
 
-    public function get_del(){
-        $query = DB::query("DELETE FROM `projects");
-        $query->execute();
-        exit();
-    }
+    /* public function get_del(){ */
+    /*     $query = DB::query("DELETE FROM `projects"); */
+    /*     $query->execute(); */
+    /*     exit(); */
+    /* } */
     
     public function get_sendmail($toadrr = 'to@exmaple.com'){
         if(!Input::get('email')){
