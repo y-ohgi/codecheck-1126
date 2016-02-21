@@ -10,7 +10,7 @@ class Controller_Auth extends Controller_Template
 		$this->template->content = View::forge('auth/signin', $data);
 	}
 
-	public function action_signup($uuid = null)
+	public function action_register($uuid = null)
 	{
         if(Input::method() === "POST"){
             
@@ -48,9 +48,8 @@ class Controller_Auth extends Controller_Template
             'uuid' => $uuid,
         );
         
-		$data["subnav"] = array('signup'=> 'active' );
-		$this->template->title = 'Auth &raquo; Signup';
-		$this->template->content = View::forge('auth/signup', $data);
+		$this->template->title = 'ユーザー登録';
+		$this->template->content = View::forge('auth/register', $data);
         
 	}
 
@@ -61,12 +60,6 @@ class Controller_Auth extends Controller_Template
 		$this->template->content = View::forge('auth/signout', $data);
 	}
 
-	public function action_register()
-	{
-       $data["subnav"] = array('register'=> 'active' );
-		$this->template->title = 'Auth &raquo; Register';
-		$this->template->content = View::forge('auth/register', $data);
-	}
 
 	public function action_mailregister()
 	{
