@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Auth extends Controller_Base
+class Controller_Auth extends Controller_Template
 {
 
 	public function action_signin()

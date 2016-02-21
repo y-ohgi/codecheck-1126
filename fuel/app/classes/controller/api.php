@@ -6,6 +6,12 @@ class Controller_Api extends Controller_Rest
     
     public function before(){
         parent::before();
+
+        if(Input::method() === "POST" || Input::method() === "DELETE"){
+            if(!Auth::check()){
+                Response::redirect('auth/signin');
+            }
+        }
     }
 
     /**

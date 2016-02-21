@@ -40,7 +40,7 @@ class Util{
             imagefilledrectangle($img, $x, $y, $w, $h, $color[rand(0, $colornum-1)]);
         }
 
-        $imgpath = DOCROOT. "upload/" . Str::random('unique') . ".png";
+        $imgpath = "upload/" . Str::random('unique') . ".png";
         $image = imagepng($img,  $imgpath);
 
         imagedestroy($img);
