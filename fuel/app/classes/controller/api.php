@@ -19,9 +19,10 @@ class Controller_Api extends Controller_Rest
      *
      * $idが渡されていた場合特定のポートフォリオを返す
      * @param int $id Projectテーブルのidにあたる
-     * @TODO: ページネーション
      */
     public function get_projects($id = null){
+        $options = [];
+        $limit = 50;
         if($id > 0){
             $project = Model_Project::find($id);
 
@@ -32,9 +33,14 @@ class Controller_Api extends Controller_Rest
                 $this->response->status = 404;
                 return "";
             }
+        }else if(Input::get('pages')){
+            // ページネーション機能
+            Input::get('limit')?$limit = Input::get('limit'):$limit;
+            
+            $options['offset'] = Input::get('pages') * $limit;
         }
         
-        $projects = Model_Project::find('all');
+        $projects = Model_Project::find('all', $options);
         
         return $projects;
     }
@@ -83,5 +89,15 @@ class Controller_Api extends Controller_Rest
             $this->response->status = 404;
             return "";
         }
+    }
+
+    /**
+     * ガチャ用API
+     */
+    public function get_gacha(){
+        $projects = Model_Project::find('all');
+        $project = $projects[array_rand($projects)];
+        
+        return array($project);
     }
 }

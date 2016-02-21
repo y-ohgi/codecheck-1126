@@ -7,13 +7,15 @@
     <?php echo Asset::css('common.css'); ?>
 
     
-    <title><?php echo $title; ?></title>
+     <title><?php echo $title?$title:"ポートフォリオアプリ"; ?></title>
   </head>
   <body>
     <div class="container row">
 
       <header>
-	<a href="/">topへ</a>
+     <a href="/">topへ</a>
+     <hr/>
+
       </header>
 
       <main>
@@ -21,8 +23,13 @@
       </main>
 
       <footer>
+     <hr/>
 
-	Footer
+     <ul>
+     <li>作成: profiles/create</li>
+     <li>新規登録: auth/mailregister</li>
+     <li>ログイン: auth/signin</li>
+     </ul>
 
       </footer>
       

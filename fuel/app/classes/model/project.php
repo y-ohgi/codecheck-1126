@@ -29,7 +29,7 @@ class Model_Project extends \Orm\Model
     public static function validate($factory)
     {
         $val = Validation::forge($factory);
-        $val->add_field('userid', 'userid', 'required');
+        //        $val->add_field('userid', 'userid', 'required');
         $val->add_field('url', 'URL', 'valid_url');
         $val->add_field('title', 'Title', 'required');
         $val->add_field('description', 'Description', 'required');
