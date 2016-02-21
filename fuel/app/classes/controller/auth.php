@@ -42,7 +42,7 @@ class Controller_Auth extends Controller_Template
         $result = DB::select('*')->from('users')->where('email', Input::post('email'))->execute()[0];
         
         if($result === NULL){
-            $uuid = Str::random('alnum', 50)
+            $uuid = Str::random('alnum', 50);
             
             $mailauth = Model_Users_Mailauth::forge(array(
                 'email' => Input::post('email'),
