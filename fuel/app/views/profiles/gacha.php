@@ -16,7 +16,7 @@
      // とても隠したい関数
      function resultHtmlGen(imgpath, title, desc, url){
        imgpath?imgpath:imgpath = "images/gachaball.jpg";
-       return "<table><tr><td colspan=2><img src=" + imgpath +"/></td></tr> <tr><th>タイトル: </th><td>"+title+"</td></tr> <tr><th>説明: </th><td>"+desc+"</td></tr> <tr><th>URL: </th><td>"+url+"</td></tr> </table>";
+       return "<table><tr><td colspan=2><img src=" + imgpath +"></td></tr> <tr><th>タイトル: </th><td>"+title+"</td></tr> <tr><th>説明: </th><td>"+desc+"</td></tr> <tr><th>URL: </th><td>"+url+"</td></tr> </table>";
      }
      
      $(document).ready(function(){
