@@ -1,10 +1,19 @@
 <?php
 
-class Controller_Auth extends Controller_Template
+class Controller_Auth extends Controller_Base
 {
 
 	public function action_signin()
 	{
+        if(Input::method() === "POST"){
+            $user = Auth::login(Input::post('username'), Input::post('password'));
+            if($user){
+                //Session::set_flash("");
+                echo "Success";exit();
+                return;
+            }
+        }
+
 		$data["subnav"] = array('signin'=> 'active' );
 		$this->template->title = 'Auth &raquo; Signin';
 		$this->template->content = View::forge('auth/signin', $data);
@@ -14,7 +23,15 @@ class Controller_Auth extends Controller_Template
 	{
         if(Input::method() === "POST"){
             
+            try{
             $user = Auth::create_user(Input::post('username'), Input::post('password'), Input::post('email'));
+            }catch(Exception $e){
+                $data["text"] = "既に登録済みのようです";
+                $this->template->title = 'Confirm';
+                $this->template->content = View::forge('auth/confirm');
+                return;
+                
+            }
             if($user){
                 $data["text"] = "ユーザー登録が完了しました";
                 $this->template->title = 'Confirm';
@@ -55,8 +72,10 @@ class Controller_Auth extends Controller_Template
 
 	public function action_signout()
 	{
+        Auth::logout();
+        
 		$data["subnav"] = array('signout'=> 'active' );
-		$this->template->title = 'Auth &raquo; Signout';
+		$this->template->title = 'ログアウト';
 		$this->template->content = View::forge('auth/signout', $data);
 	}
 

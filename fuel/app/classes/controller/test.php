@@ -28,4 +28,9 @@ class Controller_Test extends Controller_Rest
             return;
         }
     }
+
+    public function get_createimage(){
+        Util::create_profileimage();
+        return;
+    }
 }

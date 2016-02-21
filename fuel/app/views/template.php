@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title><?php echo $title; ?></title>
-	<?php echo Asset::css('bootstrap.css'); ?>
-	<style>
-		body { margin: 40px; }
-	</style>
-</head>
-<body>
-	<div class="container">
-		<div class="col-md-12">
-			<h1><?php echo $title; ?></h1>
-			<hr>
-<?php if (Session::get_flash('success')): ?>
-			<div class="alert alert-success">
-				<strong>Success</strong>
-				<p>
-				<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
-				</p>
-			</div>
-<?php endif; ?>
-<?php if (Session::get_flash('error')): ?>
-			<div class="alert alert-danger">
-				<strong>Error</strong>
-				<p>
-				<?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
-				</p>
-			</div>
-<?php endif; ?>
-		</div>
-		<div class="col-md-12">
-<?php echo $content; ?>
-		</div>
-		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
-			</p>
-		</footer>
-	</div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <?php echo Asset::js('masonry.pkgd.min.js'); ?>
+    <?php echo Asset::css('common.css'); ?>
+
+    
+    <title><?php echo $title; ?></title>
+  </head>
+  <body>
+    <div class="container row">
+
+      <header>
+	<a href="/">topへ</a>
+      </header>
+
+      <main>
+	<?php echo $content; ?>
+      </main>
+
+      <footer>
+
+	Footer
+
+      </footer>
+      
+    </div>
+
+    <style type="text/css">
+     .item{
+       /* border: 1px solid gray;
+       border-radius:5px; */
+     }
+
+     
+    </style>
+    
+    <?php echo Asset::js('stickyelements-animate.js'); ?>
+    <script>
+     // $('.grid').masonry({
+     // options...
+     // itemSelector: '.grid-item',
+     // columnWidth: 200
+     // }); 
+
+     // vanilla JS
+     // init with element
+     // var grid = document.querySelector('.grid');
+     // var msnry = new Masonry( grid, {
+     //   // options...
+     //   itemSelector: '.grid-item',
+     //   columnWidth: 200
+     // });
+     // 
+     // // init with selector
+     // var msnry = new Masonry( '.grid', {
+     //   // options...
+     // });
+     
+     stickyElements('.item', {stickiness: {x: 2, y: 5}});
+    </script>
+  </body>
 </html>

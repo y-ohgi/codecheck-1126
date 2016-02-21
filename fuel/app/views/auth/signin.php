@@ -1,9 +1,11 @@
-<ul class="nav nav-pills">
-	<li class='<?php echo Arr::get($subnav, "signin" ); ?>'><?php echo Html::anchor('auth/signin','Signin');?></li>
-	<li class='<?php echo Arr::get($subnav, "signup" ); ?>'><?php echo Html::anchor('auth/signup','Signup');?></li>
-	<li class='<?php echo Arr::get($subnav, "signout" ); ?>'><?php echo Html::anchor('auth/signout','Signout');?></li>
-	<li class='<?php echo Arr::get($subnav, "register" ); ?>'><?php echo Html::anchor('auth/register','Register');?></li>
-	<li class='<?php echo Arr::get($subnav, "mailregister" ); ?>'><?php echo Html::anchor('auth/mailregister','Mailregister');?></li>
+<?php echo Form::open(array('action' => 'auth/signin', 'method' => 'post')); ?>
 
-</ul>
-<p>Signin</p>
+<?php echo Form::label('username : ', 'username'); ?>
+<?php echo Form::input('username', '', array('placeholder' => 'username')); ?> <br />
+
+<?php echo Form::label('password : ', 'password'); ?>
+<?php echo Form::password('password', '', array('placeholder' => 'password')); ?> <br />
+
+<?php echo Form::submit('submit', 'signin'); ?>
+
+<?php echo Form::close(); ?>

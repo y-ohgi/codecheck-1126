@@ -47,7 +47,8 @@ class Controller_Api extends Controller_Rest
             $project = Model_Project::forge(array(
                 "title" => Input::post('title'),
                 "description" => Input::post('description'),
-                'url' => Input::post('url')
+                'url' => Input::post('url'),
+                'imagepath' => 'images/gachaball_red.jpg'
             ));
             $project->save();
         }else{
