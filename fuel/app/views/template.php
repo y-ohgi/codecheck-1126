@@ -13,7 +13,7 @@
     <div class="container row">
 
      <header>
-     <a href="/">topへ</a>・<?php echo Html::anchor('profiles', "profile一覧") ?>・<?php echo Html::anchor('profiles/creat', "profile作成(要ログイン)") ?>・<?php echo Html::anchor('auth/mailregister', "ユーザー登録") ?>・<?php echo Html::anchor('auth/signin', 'ログイン') ?>
+     <a href="/">topへ</a>・<?php echo Html::anchor('profiles', "profile一覧") ?>・<?php echo Html::anchor('profiles/create', "profile作成(要ログイン)") ?>・<?php echo Html::anchor('auth/mailregister', "ユーザー登録") ?>・<?php echo Html::anchor('auth/signin', 'ログイン') ?>
      
      <hr/>
      </header>
