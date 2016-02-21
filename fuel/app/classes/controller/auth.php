@@ -67,6 +67,9 @@ class Controller_Auth extends Controller_Template
                 /* } */
                 $this->response_status = '500';
             }
+        }else{
+            var_dump($result);
+            exit();
         }
 
         $data['text'] = "メールを送信しました。確認してください";
