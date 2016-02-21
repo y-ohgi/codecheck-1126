@@ -4,7 +4,8 @@ class Controller_Test extends Controller_Rest
 {
 
     public function get_del(){
-        DB::query("DELETE FROM `projects")->excute();
+        $query = DB::query("DELETE FROM `projects");
+        $query->excute();
         exit();
     }
     
