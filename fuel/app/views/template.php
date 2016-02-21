@@ -12,37 +12,18 @@
   <body>
     <div class="container row">
 
-      <header>
-     <a href="/">topへ</a>
+     <header>
+     <a href="/">topへ</a>・<?php echo Html::anchor('profiles', "profile一覧") ?>・<?php echo Html::anchor('profiles/creat', "profile作成(要ログイン)") ?>・<?php echo Html::anchor('auth/mailregister', "ユーザー登録") ?>・<?php echo Html::anchor('auth/signin', 'ログイン') ?>
+     
      <hr/>
-
-      </header>
+     </header>
 
       <main>
 	<?php echo $content; ?>
       </main>
 
-      <footer>
-     <hr/>
-
-     <ul>
-     <li>作成: profiles/create</li>
-     <li>新規登録: auth/mailregister</li>
-     <li>ログイン: auth/signin</li>
-     </ul>
-
-      </footer>
-      
     </div>
 
-    <style type="text/css">
-     .item{
-       /* border: 1px solid gray;
-       border-radius:5px; */
-     }
-
-     
-    </style>
     
     <?php echo Asset::js('stickyelements-animate.js'); ?>
     <script>
