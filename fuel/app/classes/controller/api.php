@@ -46,11 +46,14 @@ class Controller_Api extends Controller_Rest
      * @TODO: 画像投稿
      */
     public function post_projects(){
+        list(, $userid) = Auth::get_user_id();
 
+        
         $val = Model_Project::validate('create');
 
         if ($val->run()){
             $project = Model_Project::forge(array(
+                "userid" => $userid,
                 "title" => Input::post('title'),
                 "description" => Input::post('description'),
                 'url' => Input::post('url'),

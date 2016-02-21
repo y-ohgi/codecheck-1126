@@ -8,6 +8,7 @@ return array(
       array(
         0 => '001_create_projects',
         1 => '002_create_users_mailauths',
+        2 => '003_add_userid_to_projects',
       ),
     ),
     'module' => 
