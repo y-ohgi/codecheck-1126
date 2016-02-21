@@ -7,12 +7,13 @@ class Controller_Test extends Controller_Rest
         $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
         $email = new SendGrid\Email();
         $email->addTo($toadrr)->
-            setFrom('app47658778@heroku.com')->
+            setFrom(getenv('SENDGRID_USERNAME'))->
             setSubject('件名')->
             setText('こんにちは！');
 
         try {
-            $sendgrid->send($email);
+            var_dump($sendgrid->send($email));
+            
             echo "Success!!";
             return;
         } catch(\SendGrid\Exception $e) {
