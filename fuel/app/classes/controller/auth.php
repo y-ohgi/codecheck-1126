@@ -39,7 +39,7 @@ class Controller_Auth extends Controller_Template
         if( ($time - $mailauth['created_at']) > $taccept || ($time - $updatedat) > $taccept){
             $data["text"] = "無効なURLです";
             $this->template->title = 'confirm';
-            $this->template->content = View::forge('auth/confirm');
+            $this->template->content = View::forge('auth/confirm', $data);
             return;
         }
         
