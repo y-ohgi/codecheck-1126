@@ -32,9 +32,11 @@
 	   }).done(function(data){
 	     $("#result").empty();
 	     console.log(data);
-	     
 
-	     $("#result").append(resultHtmlGen(data[0]['imagepath'], data[0]['title'], data[0]['desc'], data[0]['url']));
+	     data = data.shift();
+	     
+	     
+	     $("#result").append(resultHtmlGen(data['imagepath'], data['title'], data['desc'], data['url']));
 	     
 	     $("#result").show();
 	   }).fail(function(data){
