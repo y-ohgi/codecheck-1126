@@ -11,6 +11,16 @@ class Controller_Test extends Controller_Rest
             setSubject('件名')->
             setText('こんにちは！');
 
-        $sendgrid->send($email);
+        try {
+            $sendgrid->send($email);
+            echo "Success!!";
+            return;
+        } catch(\SendGrid\Exception $e) {
+            echo $e->getCode();
+            foreach($e->getErrors() as $er) {
+                echo $er;
+            }
+            return;
+        }
     }
 }
